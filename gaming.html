@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA Gaming</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+html,body{
+overflow-x:hidden;
+background:#0d0d0d;
+font-family:'Inter',sans-serif;
+color:white;
+}
+
+body{
+background:
+linear-gradient(to bottom,#0d0d0d,#111111,#050505);
+}
+
+body::before{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#ff6b00;
+filter:blur(220px);
+opacity:.08;
+left:-200px;
+top:-200px;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#ff0000;
+filter:blur(220px);
+opacity:.08;
+right:-200px;
+bottom:-200px;
+z-index:-2;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:24px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(14px);
+z-index:999;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:2rem;
+font-weight:800;
+letter-spacing:3px;
+}
+
+.logo span{
+color:#ff6b00;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:.95rem;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#ff6b00;
+}
+
+section{
+min-height:100vh;
+padding:140px 8%;
+position:relative;
+}
+
+.hero{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+flex-direction:column;
+}
+
+.hero-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:.22;
+z-index:-2;
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.5),#0d0d0d);
+z-index:-1;
+}
+
+.tag{
+padding:12px 24px;
+border:1px solid rgba(255,107,0,.35);
+border-radius:50px;
+background:rgba(255,107,0,.08);
+margin-bottom:30px;
+letter-spacing:2px;
+font-size:.85rem;
+}
+
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:7rem;
+line-height:1;
+max-width:1200px;
+margin-bottom:25px;
+text-transform:uppercase;
+}
+
+.hero h1 span{
+color:#ff6b00;
+text-shadow:0 0 35px rgba(255,107,0,.7);
+}
+
+.hero p{
+max-width:850px;
+font-size:1.15rem;
+line-height:1.9;
+color:#c5c5c5;
+margin-bottom:40px;
+}
+
+.buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.btn{
+padding:17px 36px;
+background:#ff6b00;
+color:white;
+text-decoration:none;
+font-weight:700;
+border-radius:8px;
+transition:.4s;
+box-shadow:0 15px 40px rgba(255,107,0,.35);
+}
+
+.btn:hover{
+transform:translateY(-6px) scale(1.03);
+}
+
+.btn-outline{
+background:transparent;
+border:1px solid rgba(255,255,255,.15);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:100px;
+width:100%;
+}
+
+.stat-box{
+padding:40px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+border-radius:24px;
+transition:.5s;
+backdrop-filter:blur(10px);
+}
+
+.stat-box:hover{
+transform:translateY(-10px) scale(1.02);
+background:rgba(255,107,0,.08);
+}
+
+.stat-box h2{
+font-size:3rem;
+margin-bottom:10px;
+font-family:'Orbitron',sans-serif;
+color:#ff6b00;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:80px;
+}
+
+.section-title h2{
+font-family:'Orbitron',sans-serif;
+font-size:4.5rem;
+margin-bottom:20px;
+}
+
+.section-title p{
+max-width:700px;
+margin:auto;
+line-height:1.9;
+color:#bdbdbd;
+}
+
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:35px;
+}
+
+.game-card{
+height:550px;
+position:relative;
+overflow:hidden;
+border-radius:28px;
+}
+
+.game-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1.2s;
+filter:brightness(.7);
+}
+
+.game-card:hover img{
+transform:scale(1.15);
+filter:brightness(1);
+}
+
+.game-content{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:40px;
+background:linear-gradient(to top,rgba(0,0,0,.96),transparent);
+}
+
+.game-content h3{
+font-size:2.2rem;
+margin-bottom:10px;
+font-family:'Orbitron',sans-serif;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.feature-box{
+padding:50px;
+background:#121212;
+border-left:4px solid #ff6b00;
+transition:.5s;
+}
+
+.feature-box:hover{
+transform:translateY(-12px);
+background:#1a1a1a;
+}
+
+.feature-box h3{
+font-size:2rem;
+margin-bottom:20px;
+font-family:'Orbitron',sans-serif;
+}
+
+.feature-box p{
+line-height:1.9;
+color:#c5c5c5;
+}
+
+.tournament{
+position:relative;
+height:90vh;
+border-radius:35px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.tournament img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(.4);
+}
+
+.tournament-content{
+position:relative;
+max-width:900px;
+padding:20px;
+}
+
+.tournament-content h2{
+font-family:'Orbitron',sans-serif;
+font-size:5rem;
+margin-bottom:20px;
+}
+
+.tournament-content p{
+line-height:1.9;
+font-size:1.1rem;
+margin-bottom:40px;
+color:#d0d0d0;
+}
+
+footer{
+padding:40px 8%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+border-top:1px solid rgba(255,255,255,.06);
+}
+
+footer p{
+color:#999;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(120px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:1000px){
+
+.hero h1{
+font-size:4.5rem;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero h1,
+.section-title h2,
+.tournament-content h2{
+font-size:2.8rem;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+section{
+padding:150px 6%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="canvas-bg"></div>
+<div class="grid"></div>
+
+<nav>
+<div class="logo">NEX<span>ORA</span></div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#games">Games</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#event">Tournament</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<section class="hero" id="home">
+
+<video autoplay muted loop class="hero-video">
+<source src="https://cdn.coverr.co/videos/coverr-gaming-room-1564637907914?download=1080p" type="video/mp4">
+</video>
+
+<div class="hero-overlay"></div>
+
+<div class="tag reveal">CINEMATIC ESPORTS EXPERIENCE</div>
+
+<h1 class="reveal">Play Beyond <span>Reality</span></h1>
+
+<p class="reveal">
+Dive into a dark cinematic gaming universe powered by immersive visuals, competitive esports battles and next generation gameplay experiences.
+</p>
+
+<div class="buttons reveal">
+<a href="#games" class="btn">Explore Universe</a>
+<a href="#event" class="btn btn-outline">Watch Trailer</a>
+</div>
+
+<div class="stats reveal">
+
+<div class="stat-box">
+<h2>18M+</h2>
+<p>Active Players</p>
+</div>
+
+<div class="stat-box">
+<h2>250+</h2>
+<p>Global Tournaments</p>
+</div>
+
+<div class="stat-box">
+<h2>99%</h2>
+<p>Server Stability</p>
+</div>
+
+<div class="stat-box">
+<h2>4K</h2>
+<p>Cinematic Graphics</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="games">
+
+<div class="section-title reveal">
+<h2>Popular Games</h2>
+<p>
+Battle across futuristic worlds, competitive arenas and immersive multiplayer adventures.
+</p>
+</div>
+
+<div class="games">
+
+<div class="game-card reveal">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop" alt="game">
+<div class="game-overlay">
+<h3>Cyber Strike</h3>
+<p>Competitive futuristic FPS battle</p>
+</div>
+</div>
+
+<div class="game-card reveal">
+<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1200&auto=format&fit=crop" alt="game">
+<div class="game-overlay">
+<h3>Shadow Drift</h3>
+<p>Open world neon racing</p>
+</div>
+</div>
+
+<div class="game-card reveal">
+<img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop" alt="game">
+<div class="game-overlay">
+<h3>Nova Arena</h3>
+<p>Massive online battle zone</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="features">
+
+<div class="section-title reveal">
+<h2>Gaming Features</h2>
+<p>
+Built for ultimate performance, cinematic visuals and competitive gameplay.
+</p>
+</div>
+
+<div class="features">
+
+<div class="feature-box reveal">
+<h3>Ultra Graphics</h3>
+<p>
+Experience realistic environments, neon effects and cinematic gameplay visuals.
+</p>
+</div>
+
+<div class="feature-box reveal">
+<h3>Esports Arena</h3>
+<p>
+Compete globally in professional tournaments with ranked leaderboards.
+</p>
+</div>
+
+<div class="feature-box reveal">
+<h3>Fast Servers</h3>
+<p>
+Low latency global servers optimized for smooth competitive gameplay.
+</p>
+</div>
+
+<div class="feature-box reveal">
+<h3>Live Streaming</h3>
+<p>
+Integrated live streaming system for creators and esports events.
+</p>
+</div>
+
+<div class="feature-box reveal">
+<h3>Team Battles</h3>
+<p>
+Create squads, join clans and dominate multiplayer missions together.
+</p>
+</div>
+
+<div class="feature-box reveal">
+<h3>Cross Platform</h3>
+<p>
+Play seamlessly across PC, console and mobile gaming devices.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="event">
+
+<div class="tournament reveal">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop" alt="tournament">
+
+<div class="tournament-content">
+<h2>Nightfall Championship</h2>
+
+<p>
+The biggest cinematic esports battle featuring elite global players competing inside an immersive futuristic arena.
+</p>
+
+<a href="#" class="btn">Enter Tournament</a>
+</div>
+
+</div>
+
+</section>
+
+<footer id="contact">
+<div class="logo">NEX<span>ORA</span></div>
+<p>© 2026 NEXORA Gaming. All rights reserved.</p>
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+reveals.forEach((el)=>{
+
+const windowHeight = window.innerHeight;
+const revealTop = el.getBoundingClientRect().top;
+const revealPoint = 120;
+
+if(revealTop < windowHeight - revealPoint){
+el.classList.add('active');
+}
+
+})
+
+})
+
+const hero = document.querySelector('.hero-image img');
+
+window.addEventListener('mousemove',(e)=>{
+
+const x = (e.clientX / window.innerWidth - 0.5) * 20;
+const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+hero.style.transform = `translate(${x}px, ${y}px) rotate(${x/8}deg)`;
+
+})
+
+</script>
+
+</body>
+</html>

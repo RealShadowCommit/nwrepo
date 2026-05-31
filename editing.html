@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineCraft Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#050505;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    ::selection{
+      background:white;
+      color:black;
+    }
+
+    .bg-video{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-2;
+      opacity:0.2;
+    }
+
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(to bottom,rgba(0,0,0,.7),#050505);
+      z-index:-1;
+    }
+
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      padding:25px 7%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:999;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.2);
+    }
+
+    .logo{
+      font-size:2rem;
+      font-weight:800;
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .logo span{
+      color:#ff3c78;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-size:0.95rem;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#ff3c78;
+    }
+
+    section{
+      min-height:100vh;
+      padding:140px 8%;
+      position:relative;
+    }
+
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:60px;
+    }
+
+    .hero-text{
+      width:55%;
+    }
+
+    .hero-text h1{
+      font-size:6rem;
+      line-height:1;
+      margin-bottom:25px;
+      text-transform:uppercase;
+    }
+
+    .hero-text h1 span{
+      color:#ff3c78;
+    }
+
+    .hero-text p{
+      font-size:1.1rem;
+      line-height:1.8;
+      color:#cfcfcf;
+      margin-bottom:35px;
+      max-width:700px;
+    }
+
+    .btns{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 35px;
+      border-radius:50px;
+      border:none;
+      background:#ff3c78;
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+      text-decoration:none;
+      box-shadow:0 0 30px rgba(255,60,120,.4);
+    }
+
+    .btn:hover{
+      transform:translateY(-6px);
+      box-shadow:0 0 60px rgba(255,60,120,.8);
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.3);
+    }
+
+    .hero-image{
+      width:40%;
+      position:relative;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:30px;
+      transform:rotate(-5deg);
+      box-shadow:0 0 80px rgba(255,255,255,.15);
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:rotate(-5deg) translateY(0px)}
+      50%{transform:rotate(-5deg) translateY(-20px)}
+    }
+
+    .blur-circle{
+      position:absolute;
+      width:400px;
+      height:400px;
+      background:#ff3c78;
+      border-radius:50%;
+      filter:blur(180px);
+      opacity:0.3;
+      top:-100px;
+      right:-100px;
+      z-index:-1;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:25px;
+      margin-top:90px;
+    }
+
+    .stat-box{
+      padding:35px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:25px;
+      backdrop-filter:blur(10px);
+      transition:0.4s;
+    }
+
+    .stat-box:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .stat-box h2{
+      font-size:3rem;
+      color:#ff3c78;
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:80px;
+    }
+
+    .section-title h2{
+      font-size:4rem;
+      margin-bottom:15px;
+      text-transform:uppercase;
+    }
+
+    .section-title p{
+      color:#bdbdbd;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      padding:45px;
+      border-radius:30px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      transition:0.5s;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .service-card::before{
+      content:'';
+      position:absolute;
+      width:300px;
+      height:300px;
+      background:#ff3c78;
+      filter:blur(120px);
+      top:-120px;
+      right:-120px;
+      opacity:0;
+      transition:0.5s;
+    }
+
+    .service-card:hover::before{
+      opacity:0.3;
+    }
+
+    .service-card:hover{
+      transform:translateY(-15px);
+    }
+
+    .service-card h3{
+      font-size:1.7rem;
+      margin-bottom:20px;
+    }
+
+    .service-card p{
+      color:#c4c4c4;
+      line-height:1.8;
+    }
+
+    .portfolio{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .portfolio-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      height:450px;
+    }
+
+    .portfolio-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.7s;
+    }
+
+    .portfolio-card:hover img{
+      transform:scale(1.15);
+    }
+
+    .portfolio-content{
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      padding:40px;
+      background:linear-gradient(to top,rgba(0,0,0,.95),transparent);
+    }
+
+    .portfolio-content h3{
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .timeline{
+      position:relative;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:50%;
+      top:0;
+      transform:translateX(-50%);
+      width:3px;
+      height:100%;
+      background:#ff3c78;
+    }
+
+    .timeline-item{
+      width:50%;
+      padding:30px 50px;
+      position:relative;
+    }
+
+    .timeline-item:nth-child(odd){
+      left:0;
+      text-align:right;
+    }
+
+    .timeline-item:nth-child(even){
+      left:50%;
+    }
+
+    .timeline-box{
+      background:rgba(255,255,255,.05);
+      padding:30px;
+      border-radius:25px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .timeline-box h3{
+      margin-bottom:15px;
+      color:#ff3c78;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .testimonial-card{
+      padding:40px;
+      border-radius:30px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .testimonial-card img{
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:25px;
+    }
+
+    .testimonial-card p{
+      color:#cfcfcf;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .cta{
+      text-align:center;
+      background:linear-gradient(135deg,rgba(255,60,120,.15),rgba(255,255,255,.03));
+      border-radius:40px;
+      border:1px solid rgba(255,255,255,.08);
+      padding:100px 50px;
+    }
+
+    .cta h2{
+      font-size:4rem;
+      margin-bottom:20px;
+    }
+
+    footer{
+      padding:50px 8%;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:30px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    footer p{
+      color:#aaa;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(100px);
+      transition:1s;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media(max-width:1000px){
+
+      .hero{
+        flex-direction:column;
+      }
+
+      .hero-text,
+      .hero-image{
+        width:100%;
+      }
+
+      .hero-text h1{
+        font-size:4rem;
+      }
+
+      .stats{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .timeline::before{
+        left:0;
+      }
+
+      .timeline-item{
+        width:100%;
+        left:0 !important;
+        text-align:left !important;
+        padding-left:40px;
+        padding-right:0;
+        margin-bottom:40px;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      nav{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .section-title h2,
+      .cta h2{
+        font-size:2.5rem;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      section{
+        padding:140px 6%;
+      }
+
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop class="bg-video">
+    <source src="https://cdn.coverr.co/videos/coverr-working-on-video-editing-1560871486846?download=1080p" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <nav>
+    <div class="logo">Cine<span>Craft</span></div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+
+    <div class="hero-text reveal">
+      <h1>Cinematic <span>Video</span> Editing Agency</h1>
+
+      <p>
+        We create premium edits for creators, brands, documentaries, reels, ads, YouTube videos and cinematic storytelling. Smooth transitions, motion graphics, sound design and next-level visual experience.
+      </p>
+
+      <div class="btns">
+        <a href="#contact" class="btn">Start Project</a>
+        <a href="#work" class="btn btn-outline">View Portfolio</a>
+      </div>
+
+      <div class="stats">
+
+        <div class="stat-box">
+          <h2>250+</h2>
+          <p>Projects Delivered</p>
+        </div>
+
+        <div class="stat-box">
+          <h2>95%</h2>
+          <p>Client Satisfaction</p>
+        </div>
+
+        <div class="stat-box">
+          <h2>4M+</h2>
+          <p>Views Generated</p>
+        </div>
+
+        <div class="stat-box">
+          <h2>24/7</h2>
+          <p>Creative Support</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-image reveal">
+      <div class="blur-circle"></div>
+      <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop" alt="editing studio">
+    </div>
+
+  </section>
+
+
+  <section id="services">
+
+    <div class="section-title reveal">
+      <h2>Our Services</h2>
+      <p>
+        Professional post production services crafted for creators and brands who want premium cinematic visuals.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <h3>YouTube Editing</h3>
+        <p>
+          Cinematic cuts, retention editing, subtitles, transitions and storytelling edits designed to boost engagement.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Commercial Ads</h3>
+        <p>
+          High-end product advertisements with motion graphics, premium color grading and cinematic transitions.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Documentary Films</h3>
+        <p>
+          Emotional storytelling with immersive sound design, cinematic pacing and professional visual treatment.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Short Form Reels</h3>
+        <p>
+          Viral-ready Instagram reels, TikTok videos and shorts with fast pacing and engaging captions.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Color Grading</h3>
+        <p>
+          Hollywood style cinematic tones, mood enhancement and premium visual atmosphere for your footage.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <h3>Motion Graphics</h3>
+        <p>
+          Smooth animations, logo reveals, text motion and VFX elements that make content look premium.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="work">
+
+    <div class="section-title reveal">
+      <h2>Featured Work</h2>
+      <p>
+        Some cinematic projects edited by our creative team for global creators and modern brands.
+      </p>
+    </div>
+
+    <div class="portfolio">
+
+      <div class="portfolio-card reveal">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200&auto=format&fit=crop" alt="portfolio">
+
+        <div class="portfolio-content">
+          <h3>Travel Documentary</h3>
+          <p>Emotional cinematic storytelling</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="portfolio">
+
+        <div class="portfolio-content">
+          <h3>Luxury Brand Ad</h3>
+          <p>Commercial cinematic visuals</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop" alt="portfolio">
+
+        <div class="portfolio-content">
+          <h3>Creator Reel Edit</h3>
+          <p>Fast paced social content</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="process">
+
+    <div class="section-title reveal">
+      <h2>Our Process</h2>
+      <p>
+        From raw footage to cinematic masterpiece — here is how we transform your content.
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-box">
+          <h3>01. Strategy</h3>
+          <p>
+            We understand your brand, audience and editing style before starting production.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-box">
+          <h3>02. Storytelling</h3>
+          <p>
+            We create engaging pacing, cinematic cuts and emotional flow for maximum retention.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-box">
+          <h3>03. Motion & Sound</h3>
+          <p>
+            Smooth transitions, sound effects and visual effects are added for a premium feel.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-box">
+          <h3>04. Final Delivery</h3>
+          <p>
+            Final optimized cinematic export ready for YouTube, Instagram or advertisements.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="section-title reveal">
+      <h2>Client Reviews</h2>
+      <p>
+        Creators and brands trust us for cinematic storytelling and premium editing quality.
+      </p>
+    </div>
+
+    <div class="testimonials">
+
+      <div class="testimonial-card reveal">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="client">
+        <p>
+          “The editing quality was insane. My YouTube watch time increased massively after working with CineCraft.”
+        </p>
+        <h3>Alex Carter</h3>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="client">
+        <p>
+          “Their cinematic transitions and sound design completely transformed our brand advertisement.”
+        </p>
+        <h3>Sophia Wilson</h3>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="client">
+        <p>
+          “Professional team, crazy visuals and smooth communication. Highly recommended editing agency.”
+        </p>
+        <h3>David Miller</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="contact">
+
+    <div class="cta reveal">
+      <h2>Ready To Create Something Cinematic?</h2>
+      <p style="max-width:700px;margin:auto;color:#ccc;line-height:1.8;margin-bottom:40px;">
+        Let’s turn your raw footage into a premium visual experience with high-end editing and motion graphics.
+      </p>
+
+      <a href="#" class="btn">Book A Call</a>
+    </div>
+
+  </section>
+
+
+  <footer>
+    <div>
+      <div class="logo">Cine<span>Craft</span></div>
+    </div>
+
+    <p>© 2026 CineCraft Studio. All Rights Reserved.</p>
+  </footer>
+
+
+  <script>
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    window.addEventListener('scroll', ()=>{
+
+      reveals.forEach((el)=>{
+
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 120;
+
+        if(revealTop < windowHeight - revealPoint){
+          el.classList.add('active');
+        }
+
+      })
+
+    })
+
+
+    window.addEventListener('mousemove',(e)=>{
+
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+
+      document.querySelector('.hero-image img').style.transform = `rotate(-5deg) translate(${x*20}px, ${y*20}px)`;
+
+    })
+
+  </script>
+
+</body>
+</html>

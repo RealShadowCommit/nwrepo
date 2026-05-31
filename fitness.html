@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRON PULSE FITNESS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+body::-webkit-scrollbar{
+width:10px;
+}
+
+body::-webkit-scrollbar-thumb{
+background:#ff3c00;
+border-radius:20px;
+}
+
+header{
+position:fixed;
+width:100%;
+top:0;
+left:0;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+
+.logo{
+font-size:34px;
+font-weight:800;
+letter-spacing:3px;
+color:#ff3c00;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+margin-left:35px;
+font-size:15px;
+font-weight:500;
+transition:0.4s;
+position:relative;
+}
+
+nav a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0%;
+height:2px;
+background:#ff3c00;
+transition:0.4s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+section{
+padding:110px 7%;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:50px;
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1800&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+}
+
+.hero-text{
+max-width:650px;
+}
+
+.hero-text h1{
+font-size:90px;
+line-height:1;
+margin-bottom:25px;
+font-weight:800;
+}
+
+.hero-text span{
+color:#ff3c00;
+text-shadow:0 0 20px #ff3c00;
+}
+
+.hero-text p{
+font-size:17px;
+line-height:1.9;
+color:#d2d2d2;
+margin-bottom:35px;
+}
+
+.btn{
+padding:17px 40px;
+background:#ff3c00;
+border:none;
+border-radius:50px;
+color:white;
+font-size:16px;
+font-weight:600;
+text-decoration:none;
+cursor:pointer;
+transition:0.4s;
+display:inline-block;
+box-shadow:0 0 30px rgba(255,60,0,0.4);
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.04);
+box-shadow:0 0 40px rgba(255,60,0,0.8);
+}
+
+.hero-card{
+width:340px;
+padding:30px;
+border-radius:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.hero-card h2{
+font-size:50px;
+color:#ff3c00;
+margin-bottom:10px;
+}
+
+.hero-card p{
+color:#d5d5d5;
+line-height:1.8;
+}
+
+.title{
+text-align:center;
+margin-bottom:70px;
+}
+
+.title h2{
+font-size:65px;
+margin-bottom:15px;
+font-weight:800;
+}
+
+.title span{
+color:#ff3c00;
+}
+
+.title p{
+color:#bcbcbc;
+max-width:700px;
+margin:auto;
+line-height:1.8;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
+}
+
+.service-box{
+height:420px;
+border-radius:35px;
+overflow:hidden;
+position:relative;
+transition:0.5s;
+}
+
+.service-box:hover{
+transform:translateY(-12px);
+}
+
+.service-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:linear-gradient(to top,rgba(0,0,0,0.95),rgba(0,0,0,0.2));
+padding:35px;
+display:flex;
+flex-direction:column;
+justify-content:end;
+}
+
+.overlay h3{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.overlay p{
+line-height:1.8;
+color:#ddd;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+.stat-box{
+background:linear-gradient(145deg,#111,#1d1d1d);
+padding:50px 30px;
+text-align:center;
+border-radius:30px;
+transition:0.4s;
+}
+
+.stat-box:hover{
+transform:scale(1.05);
+}
+
+.stat-box h1{
+font-size:70px;
+color:#ff3c00;
+margin-bottom:10px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.gallery img{
+width:100%;
+height:450px;
+object-fit:cover;
+border-radius:30px;
+transition:0.5s;
+}
+
+.gallery img:hover{
+transform:scale(1.04);
+}
+
+.banner{
+height:550px;
+border-radius:40px;
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)),
+url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1800&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:30px;
+}
+
+.banner h1{
+font-size:85px;
+max-width:900px;
+line-height:1.1;
+}
+
+.plans{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:35px;
+}
+
+.plan{
+padding:45px 35px;
+background:#111;
+border-radius:35px;
+text-align:center;
+transition:0.5s;
+position:relative;
+overflow:hidden;
+}
+
+.plan::before{
+content:'';
+position:absolute;
+width:180px;
+height:180px;
+background:#ff3c00;
+filter:blur(100px);
+top:-40px;
+right:-40px;
+opacity:0.3;
+}
+
+.plan:hover{
+transform:translateY(-12px);
+}
+
+.plan h3{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.plan h1{
+font-size:70px;
+color:#ff3c00;
+margin-bottom:25px;
+}
+
+.plan p{
+margin:15px 0;
+color:#d2d2d2;
+}
+
+.trainers{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.trainer{
+background:#111;
+border-radius:35px;
+overflow:hidden;
+transition:0.5s;
+}
+
+.trainer:hover{
+transform:translateY(-10px);
+}
+
+.trainer img{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+.trainer-content{
+padding:30px;
+}
+
+.trainer-content h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.trainer-content span{
+color:#ff3c00;
+}
+
+.review-wrap{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.review{
+padding:35px;
+background:#101010;
+border-radius:30px;
+line-height:2;
+color:#dadada;
+font-size:16px;
+}
+
+.review h3{
+margin-top:25px;
+color:#ff3c00;
+}
+
+.contact{
+background:linear-gradient(145deg,#111,#1c1c1c);
+padding:60px;
+border-radius:40px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+input,textarea{
+padding:22px;
+background:#0b0b0b;
+border:1px solid #222;
+border-radius:18px;
+color:white;
+font-size:16px;
+}
+
+footer{
+padding:35px;
+text-align:center;
+background:#000;
+color:#999;
+}
+
+.top{
+position:fixed;
+right:25px;
+bottom:25px;
+width:55px;
+height:55px;
+background:#ff3c00;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:24px;
+cursor:pointer;
+opacity:0;
+transition:0.4s;
+}
+
+.top.show{
+opacity:1;
+}
+
+@media(max-width:900px){
+.hero{
+flex-direction:column;
+text-align:center;
+padding-top:160px;
+}
+
+.hero-text h1{
+font-size:55px;
+}
+
+.banner h1{
+font-size:50px;
+}
+
+.title h2{
+font-size:45px;
+}
+
+nav{
+display:none;
+}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">IRONPULSE</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#services">Programs</a>
+<a href="#gallery">Gallery</a>
+<a href="#plans">Plans</a>
+<a href="#trainers">Trainers</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<div class="hero-text">
+<h1>NO PAIN <br> <span>NO LIMIT</span></h1>
+
+<p>
+Train harder, become stronger and transform your lifestyle with elite fitness programs, modern equipment and professional coaching.
+</p>
+
+<a href="#plans" class="btn">START TODAY</a>
+</div>
+
+<div class="hero-card">
+<h2>24/7</h2>
+<p>
+Premium luxury gym with high-end machines, personal trainers, yoga studio, cardio zone and recovery center.
+</p>
+</div>
+</section>
+
+<section id="services">
+<div class="title">
+<h2>OUR <span>PROGRAMS</span></h2>
+<p>Designed for every fitness goal from fat loss to bodybuilding.</p>
+</div>
+
+<div class="services">
+
+<div class="service-box">
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Body Building</h3>
+<p>Advanced muscle growth workouts and strength training programs.</p>
+</div>
+</div>
+
+<div class="service-box">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Fitness Cardio</h3>
+<p>Burn calories and improve stamina with intense cardio sessions.</p>
+</div>
+</div>
+
+<div class="service-box">
+<img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Power Lifting</h3>
+<p>Professional heavy lifting training with expert supervision.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section>
+<div class="stats">
+<div class="stat-box">
+<h1 class="counter" data-target="10">0</h1>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-box">
+<h1 class="counter" data-target="6500">0</h1>
+<p>Members Joined</p>
+</div>
+
+<div class="stat-box">
+<h1 class="counter" data-target="120">0</h1>
+<p>Fitness Coaches</p>
+</div>
+
+<div class="stat-box">
+<h1 class="counter" data-target="32">0</h1>
+<p>Fitness Awards</p>
+</div>
+</div>
+</section>
+
+<section id="gallery">
+<div class="title">
+<h2>GYM <span>GALLERY</span></h2>
+<p>Explore our premium workout environment.</p>
+</div>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1599058917212-d750089bc07f?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1200&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1200&auto=format&fit=crop">
+</div>
+</section>
+
+<section>
+<div class="banner">
+<h1>TRANSFORM YOUR BODY WITH ELITE TRAINING</h1>
+</div>
+</section>
+
+<section id="plans">
+<div class="title">
+<h2>MEMBERSHIP <span>PLANS</span></h2>
+<p>Choose the perfect plan for your fitness journey.</p>
+</div>
+
+<div class="plans">
+
+<div class="plan">
+<h3>BASIC</h3>
+<h1>₹999</h1>
+<p>Gym Access</p>
+<p>Locker Room</p>
+<p>Cardio Section</p>
+<p>Free WiFi</p>
+<br>
+<button class="btn">JOIN NOW</button>
+</div>
+
+<div class="plan">
+<h3>PREMIUM</h3>
+<h1>₹2499</h1>
+<p>Personal Trainer</p>
+<p>Diet Plans</p>
+<p>Yoga Classes</p>
+<p>Steam Bath</p>
+<br>
+<button class="btn">JOIN NOW</button>
+</div>
+
+<div class="plan">
+<h3>ELITE</h3>
+<h1>₹4999</h1>
+<p>VIP Lounge</p>
+<p>1-on-1 Coaching</p>
+<p>Recovery Therapy</p>
+<p>All Access</p>
+<br>
+<button class="btn">JOIN NOW</button>
+</div>
+
+</div>
+</section>
+
+<section id="trainers">
+<div class="title">
+<h2>TOP <span>TRAINERS</span></h2>
+<p>Meet our certified fitness experts.</p>
+</div>
+
+<div class="trainers">
+
+<div class="trainer">
+<img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1200&auto=format&fit=crop">
+<div class="trainer-content">
+<h2>JAMES WALKER</h2>
+<span>Strength Coach</span>
+</div>
+</div>
+
+<div class="trainer">
+<img src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=1200&auto=format&fit=crop">
+<div class="trainer-content">
+<h2>EMMA CLARK</h2>
+<span>Yoga Instructor</span>
+</div>
+</div>
+
+<div class="trainer">
+<img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=1200&auto=format&fit=crop">
+<div class="trainer-content">
+<h2>MICHEAL RAY</h2>
+<span>Fitness Expert</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<section>
+<div class="title">
+<h2>CLIENT <span>REVIEWS</span></h2>
+<p>Thousands trust IRONPULSE for their fitness transformation.</p>
+</div>
+
+<div class="review-wrap">
+<div class="review">
+“The atmosphere is insane and trainers push you beyond your limits. Best gym experience ever.”
+<h3>- Rahul Mehra</h3>
+</div>
+
+<div class="review">
+“I lost 14kg in 4 months with their workout and diet plans. Highly recommended.”
+<h3>- Aman Khanna</h3>
+</div>
+
+<div class="review">
+“Luxury interiors, modern equipment and amazing trainers. Totally worth it.”
+<h3>- Priya Sharma</h3>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="title">
+<h2>CONTACT <span>US</span></h2>
+<p>Start your transformation today.</p>
+</div>
+
+<div class="contact">
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<input type="text" placeholder="Phone Number">
+<textarea rows="6" placeholder="Your Message"></textarea>
+<button class="btn">SEND MESSAGE</button>
+</form>
+</div>
+</section>
+
+<footer>
+© 2026 IRONPULSE FITNESS | All Rights Reserved
+</footer>
+
+<div class="top" id="top">↑</div>
+
+<script>
+
+const counters = document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+function update(){
+const target = +counter.getAttribute('data-target');
+const count = +counter.innerText;
+const inc = target / 100;
+
+if(count < target){
+counter.innerText = Math.ceil(count + inc);
+setTimeout(update,20);
+}
+else{
+counter.innerText = target;
+}
+}
+update();
+});
+
+const topBtn = document.getElementById('top');
+
+window.addEventListener('scroll',()=>{
+if(window.scrollY > 400){
+topBtn.classList.add('show');
+}
+else{
+topBtn.classList.remove('show');
+}
+});
+
+topBtn.onclick = ()=>{
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+</script>
+
+</body>
+</html>

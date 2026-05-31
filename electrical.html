@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voltix Electricals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+html,body{
+overflow-x:hidden;
+background:#070b14;
+font-family:'Poppins',sans-serif;
+color:white;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:600px;
+height:600px;
+background:#ffd000;
+filter:blur(180px);
+opacity:.12;
+left:-200px;
+top:-200px;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:600px;
+height:600px;
+background:#00d9ff;
+filter:blur(180px);
+opacity:.12;
+right:-200px;
+bottom:-200px;
+z-index:-2;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:22px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(12px);
+background:rgba(0,0,0,.3);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:999;
+}
+
+.logo{
+font-size:2rem;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#ffd000;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:.95rem;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#ffd000;
+}
+
+.btn{
+display:inline-block;
+padding:15px 32px;
+background:linear-gradient(135deg,#ffd000,#ff9d00);
+color:black;
+text-decoration:none;
+font-weight:700;
+border-radius:50px;
+transition:.4s;
+box-shadow:0 15px 40px rgba(255,208,0,.25);
+}
+
+.btn:hover{
+transform:translateY(-5px);
+}
+
+section{
+min-height:100vh;
+padding:140px 8%;
+position:relative;
+}
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+}
+
+.hero-content{
+width:55%;
+}
+
+.hero-content h1{
+font-size:6rem;
+line-height:1;
+margin-bottom:25px;
+font-weight:800;
+}
+
+.hero-content h1 span{
+color:#ffd000;
+}
+
+.hero-content p{
+font-size:1.1rem;
+line-height:1.9;
+color:#c6c6c6;
+max-width:700px;
+margin-bottom:40px;
+}
+
+.hero-image{
+width:40%;
+position:relative;
+}
+
+.hero-image img{
+width:100%;
+border-radius:35px;
+box-shadow:0 40px 100px rgba(0,0,0,.5);
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-18px)}
+}
+
+.glow{
+position:absolute;
+width:280px;
+height:280px;
+background:#ffd000;
+filter:blur(140px);
+opacity:.3;
+top:-80px;
+right:-50px;
+z-index:-1;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:80px;
+}
+
+.stat-box{
+padding:35px;
+border-radius:28px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+transition:.4s;
+}
+
+.stat-box:hover{
+transform:translateY(-10px);
+background:rgba(255,255,255,.06);
+}
+
+.stat-box h2{
+font-size:3rem;
+margin-bottom:10px;
+color:#ffd000;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:80px;
+}
+
+.section-title h2{
+font-size:4rem;
+margin-bottom:18px;
+}
+
+.section-title p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#bdbdbd;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.product-card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+border-radius:30px;
+overflow:hidden;
+transition:.5s;
+}
+
+.product-card:hover{
+transform:translateY(-12px);
+}
+
+.product-card img{
+width:100%;
+height:260px;
+object-fit:cover;
+}
+
+.product-content{
+padding:30px;
+}
+
+.product-content h3{
+font-size:1.7rem;
+margin-bottom:12px;
+}
+
+.product-content p{
+line-height:1.8;
+color:#c5c5c5;
+margin-bottom:20px;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.service-card{
+padding:45px;
+border-radius:30px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+transition:.4s;
+}
+
+.service-card:hover{
+transform:translateY(-12px);
+}
+
+.service-card h3{
+font-size:1.8rem;
+margin-bottom:18px;
+color:#ffd000;
+}
+
+.service-card p{
+line-height:1.8;
+color:#c5c5c5;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+gap:30px;
+}
+
+.gallery-card{
+height:450px;
+border-radius:35px;
+overflow:hidden;
+position:relative;
+}
+
+.gallery-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
+}
+
+.gallery-card:hover img{
+transform:scale(1.12);
+}
+
+.gallery-content{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:35px;
+background:linear-gradient(to top,rgba(0,0,0,.95),transparent);
+}
+
+.gallery-content h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.testimonial{
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.testimonial img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:20px;
+}
+
+.testimonial p{
+line-height:1.8;
+color:#c5c5c5;
+margin-bottom:18px;
+}
+
+.cta{
+text-align:center;
+padding:100px 50px;
+border-radius:40px;
+background:linear-gradient(135deg,rgba(255,208,0,.15),rgba(255,255,255,.03));
+border:1px solid rgba(255,255,255,.06);
+}
+
+.cta h2{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.cta p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#c5c5c5;
+margin-bottom:40px;
+}
+
+footer{
+padding:40px 8%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+border-top:1px solid rgba(255,255,255,.06);
+}
+
+footer p{
+color:#aaa;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(90px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:1000px){
+
+.hero{
+flex-direction:column;
+}
+
+.hero-content,
+.hero-image{
+width:100%;
+}
+
+.hero-content h1{
+font-size:4rem;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero-content h1,
+.section-title h2,
+.cta h2{
+font-size:2.7rem;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+section{
+padding:150px 6%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">Volt<span>ix</span></div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<section class="hero" id="home">
+
+<div class="hero-content reveal">
+<h1>Modern <span>Electrical</span> Solutions</h1>
+
+<p>
+Voltix Electricals provides premium electrical products, smart lighting solutions, wiring systems and professional installation services for homes and businesses.
+</p>
+
+<a href="#products" class="btn">Explore Products</a>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2>15+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-box">
+<h2>5K+</h2>
+<p>Happy Customers</p>
+</div>
+
+<div class="stat-box">
+<h2>120+</h2>
+<p>Premium Brands</p>
+</div>
+
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Electrical Support</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-image reveal">
+<div class="glow"></div>
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop" alt="electrical shop">
+</div>
+
+</section>
+
+<section id="products">
+
+<div class="section-title reveal">
+<h2>Top Products</h2>
+<p>
+Explore our premium electrical collection built for safety, durability and modern performance.
+</p>
+</div>
+
+<div class="products">
+
+<div class="product-card reveal">
+<img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop" alt="lighting">
+<div class="product-content">
+<h3>Smart Lighting</h3>
+<p>
+Modern LED systems and decorative lighting solutions for homes and offices.
+</p>
+<a href="#" class="btn">View More</a>
+</div>
+</div>
+
+<div class="product-card reveal">
+<img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&auto=format&fit=crop" alt="switches">
+<div class="product-content">
+<h3>Switches & Boards</h3>
+<p>
+Premium quality modular switches and durable electrical accessories.
+</p>
+<a href="#" class="btn">View More</a>
+</div>
+</div>
+
+<div class="product-card reveal">
+<img src="https://images.unsplash.com/photo-1581092919535-7146ff1a590e?q=80&w=1200&auto=format&fit=crop" alt="wires">
+<div class="product-content">
+<h3>Wires & Cables</h3>
+<p>
+Reliable industrial and home wiring systems with maximum safety standards.
+</p>
+<a href="#" class="btn">View More</a>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<div class="section-title reveal">
+<h2>Professional Services</h2>
+<p>
+Expert electrical services for residential, commercial and industrial spaces.
+</p>
+</div>
+
+<div class="services">
+
+<div class="service-card reveal">
+<h3>Electrical Installation</h3>
+<p>
+Professional wiring and electrical setup for modern homes and offices.
+</p>
+</div>
+
+<div class="service-card reveal">
+<h3>Maintenance & Repair</h3>
+<p>
+Fast troubleshooting and repair services for electrical systems and appliances.
+</p>
+</div>
+
+<div class="service-card reveal">
+<h3>Smart Home Setup</h3>
+<p>
+Smart automation, lighting control and advanced electrical integrations.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+<div class="section-title reveal">
+<h2>Shop Gallery</h2>
+<p>
+A glimpse into our modern electrical showroom and premium installations.
+</p>
+</div>
+
+<div class="gallery">
+
+<div class="gallery-card reveal">
+<img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop" alt="gallery">
+<div class="gallery-content">
+<h3>Modern Showroom</h3>
+<p>Premium lighting experience</p>
+</div>
+</div>
+
+<div class="gallery-card reveal">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="gallery">
+<div class="gallery-content">
+<h3>Smart Technology</h3>
+<p>Advanced electrical systems</p>
+</div>
+</div>
+
+<div class="gallery-card reveal">
+<img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop" alt="gallery">
+<div class="gallery-content">
+<h3>Industrial Setup</h3>
+<p>Safe and scalable solutions</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="section-title reveal">
+<h2>Customer Reviews</h2>
+<p>
+Trusted by homeowners and businesses for reliable electrical solutions.
+</p>
+</div>
+
+<div class="testimonials">
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="client">
+<p>
+“Excellent electrical products and very professional installation service.”
+</p>
+<h3>Rahul Sharma</h3>
+</div>
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/women/44.jpg" alt="client">
+<p>
+“The smart lighting setup completely transformed our office atmosphere.”
+</p>
+<h3>Priya Kapoor</h3>
+</div>
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/men/54.jpg" alt="client">
+<p>
+“Reliable team, quality products and fast support whenever needed.”
+</p>
+<h3>Aman Verma</h3>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="cta reveal">
+<h2>Need Electrical Solutions?</h2>
+<p>
+Contact Voltix Electricals today for premium electrical products and expert installation services.
+</p>
+<a href="#" class="btn">Contact Now</a>
+</div>
+
+</section>
+
+<footer>
+<div class="logo">Volt<span>ix</span></div>
+<p>© 2026 Voltix Electricals. All rights reserved.</p>
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+reveals.forEach((el)=>{
+
+const windowHeight = window.innerHeight;
+const revealTop = el.getBoundingClientRect().top;
+const revealPoint = 120;
+
+if(revealTop < windowHeight - revealPoint){
+el.classList.add('active');
+}
+
+})
+
+})
+
+</script>
+
+</body>
+</html>

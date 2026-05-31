@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAKE Startup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#050816;
+color:white;
+overflow-x:hidden;
+width:100%;
+}
+
+html{
+overflow-x:hidden;
+width:100%;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#5f5fff;
+filter:blur(220px);
+opacity:.15;
+top:-200px;
+left:-200px;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:700px;
+height:700px;
+background:#00d4ff;
+filter:blur(220px);
+opacity:.12;
+bottom:-250px;
+right:-200px;
+z-index:-2;
+}
+
+nav{
+position:fixed;
+width:100%;
+padding:24px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(16px);
+background:rgba(5,8,22,.45);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:999;
+}
+
+.logo{
+font-size:2rem;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#00d4ff;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:.95rem;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#00d4ff;
+}
+
+.btn{
+padding:15px 30px;
+border-radius:50px;
+background:linear-gradient(135deg,#5f5fff,#00d4ff);
+color:white;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 10px 40px rgba(0,212,255,.25);
+transition:.4s;
+display:inline-block;
+}
+
+.btn:hover{
+transform:translateY(-6px) scale(1.03);
+}
+
+section{
+min-height:100vh;
+padding:140px 8%;
+position:relative;
+}
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+}
+
+.hero-content{
+width:55%;
+}
+
+.hero-content h1{
+font-size:6rem;
+line-height:1;
+margin-bottom:30px;
+font-weight:800;
+}
+
+.hero-content h1 span{
+background:linear-gradient(135deg,#00d4ff,#5f5fff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-content p{
+font-size:1.1rem;
+line-height:1.9;
+color:#c6c6d0;
+margin-bottom:40px;
+max-width:700px;
+}
+
+.hero-image{
+width:40%;
+position:relative;
+}
+
+.hero-image img{
+width:100%;
+border-radius:35px;
+box-shadow:0 40px 100px rgba(0,0,0,.6);
+animation:float 5s ease-in-out infinite;
+max-width:100%;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+}
+
+.hero-glow{
+position:absolute;
+width:300px;
+height:300px;
+background:#00d4ff;
+filter:blur(150px);
+opacity:.35;
+top:-80px;
+right:-50px;
+z-index:-1;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:90px;
+}
+
+.stat-card{
+padding:35px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+backdrop-filter:blur(12px);
+border-radius:28px;
+transition:.4s;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+background:rgba(255,255,255,.06);
+}
+
+.stat-card h2{
+font-size:3rem;
+margin-bottom:10px;
+background:linear-gradient(135deg,#00d4ff,#5f5fff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:80px;
+}
+
+.section-title h2{
+font-size:4rem;
+margin-bottom:18px;
+}
+
+.section-title p{
+max-width:700px;
+margin:auto;
+color:#b6b6c4;
+line-height:1.9;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.feature-card{
+padding:45px;
+background:rgba(255,255,255,.04);
+border-radius:30px;
+border:1px solid rgba(255,255,255,.06);
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.feature-card::before{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:#00d4ff;
+filter:blur(120px);
+opacity:0;
+transition:.5s;
+top:-120px;
+right:-100px;
+}
+
+.feature-card:hover::before{
+opacity:.25;
+}
+
+.feature-card:hover{
+transform:translateY(-12px);
+}
+
+.feature-card h3{
+font-size:1.7rem;
+margin-bottom:20px;
+}
+
+.feature-card p{
+line-height:1.8;
+color:#c3c3ce;
+}
+
+.showcase{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:35px;
+}
+
+.showcase-card{
+position:relative;
+overflow:hidden;
+border-radius:35px;
+height:500px;
+}
+
+.showcase-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
+}
+
+.showcase-card:hover img{
+transform:scale(1.15);
+}
+
+.showcase-content{
+position:absolute;
+bottom:0;
+left:0;
+padding:40px;
+width:100%;
+background:linear-gradient(to top,rgba(0,0,0,.95),transparent);
+}
+
+.showcase-content h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.process{
+max-width:1100px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+.process-step{
+display:flex;
+gap:30px;
+align-items:flex-start;
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.step-number{
+min-width:80px;
+height:80px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:2rem;
+font-weight:700;
+background:linear-gradient(135deg,#5f5fff,#00d4ff);
+}
+
+.process-step h3{
+font-size:2rem;
+margin-bottom:12px;
+}
+
+.process-step p{
+line-height:1.8;
+color:#c3c3ce;
+}
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.testimonial{
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.testimonial img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:25px;
+}
+
+.testimonial p{
+line-height:1.8;
+color:#c5c5cf;
+margin-bottom:20px;
+}
+
+.cta{
+text-align:center;
+padding:100px 50px;
+background:linear-gradient(135deg,rgba(95,95,255,.18),rgba(0,212,255,.12));
+border-radius:40px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.cta h2{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.cta p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#c3c3ce;
+margin-bottom:40px;
+}
+
+footer{
+padding:40px 8%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:25px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+footer p{
+color:#aaa;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(90px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:1000px){
+
+.hero{
+flex-direction:column;
+}
+
+.hero-content,
+.hero-image{
+width:100%;
+}
+
+.hero-content h1{
+font-size:4rem;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero-content h1,
+.section-title h2,
+.cta h2{
+font-size:2.7rem;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.process-step{
+flex-direction:column;
+}
+
+section{
+padding:150px 6%;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">TA<span>KE</span></div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#showcase">Showcase</a></li>
+<li><a href="#process">Process</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<section class="hero" id="home">
+
+<div class="hero-content reveal">
+<h1>Future Of <span>Creative Startups</span></h1>
+
+<p>
+TAKE is a modern digital startup helping creators and brands scale faster through cinematic design, powerful technology and creative storytelling experiences.
+</p>
+
+<a href="#contact" class="btn">Launch Startup</a>
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>500+</h2>
+<p>Clients Worldwide</p>
+</div>
+
+<div class="stat-card">
+<h2>120M</h2>
+<p>Views Generated</p>
+</div>
+
+<div class="stat-card">
+<h2>98%</h2>
+<p>Success Rate</p>
+</div>
+
+<div class="stat-card">
+<h2>24/7</h2>
+<p>Support Team</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-image reveal">
+<div class="hero-glow"></div>
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="startup">
+</div>
+
+</section>
+
+<section id="features">
+
+<div class="section-title reveal">
+<h2>Powerful Features</h2>
+<p>
+Built for modern startups that want speed, scalability, cinematic visuals and premium user experience.
+</p>
+</div>
+
+<div class="features">
+
+<div class="feature-card reveal">
+<h3>AI Automation</h3>
+<p>
+Automate workflows, optimize productivity and boost startup efficiency using smart modern systems.
+</p>
+</div>
+
+<div class="feature-card reveal">
+<h3>Creative Branding</h3>
+<p>
+Modern cinematic branding solutions designed to make your startup stand out globally.
+</p>
+</div>
+
+<div class="feature-card reveal">
+<h3>Growth Strategy</h3>
+<p>
+Advanced digital growth systems for creators, agencies and tech startups.
+</p>
+</div>
+
+<div class="feature-card reveal">
+<h3>UI/UX Experience</h3>
+<p>
+Smooth responsive interfaces crafted for modern users and premium interaction.
+</p>
+</div>
+
+<div class="feature-card reveal">
+<h3>Motion Design</h3>
+<p>
+Cinematic animations and immersive interactions that make websites feel alive.
+</p>
+</div>
+
+<div class="feature-card reveal">
+<h3>Cloud Scaling</h3>
+<p>
+Scalable cloud infrastructure for fast performance and reliable business growth.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="showcase">
+
+<div class="section-title reveal">
+<h2>Startup Showcase</h2>
+<p>
+Explore some futuristic creative projects and digital experiences built by TAKE.
+</p>
+</div>
+
+<div class="showcase">
+
+<div class="showcase-card reveal">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="showcase">
+<div class="showcase-content">
+<h3>Creative Platform</h3>
+<p>Modern creator ecosystem</p>
+</div>
+</div>
+
+<div class="showcase-card reveal">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="showcase">
+<div class="showcase-content">
+<h3>Tech Workspace</h3>
+<p>Future ready startup tools</p>
+</div>
+</div>
+
+<div class="showcase-card reveal">
+<img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="showcase">
+<div class="showcase-content">
+<h3>Global Team</h3>
+<p>Creative collaboration system</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="process">
+
+<div class="section-title reveal">
+<h2>How We Build</h2>
+<p>
+A streamlined startup workflow designed for speed, innovation and premium execution.
+</p>
+</div>
+
+<div class="process">
+
+<div class="process-step reveal">
+<div class="step-number">1</div>
+<div>
+<h3>Research & Strategy</h3>
+<p>
+We analyze your business model, audience and goals before creating the product strategy.
+</p>
+</div>
+</div>
+
+<div class="process-step reveal">
+<div class="step-number">2</div>
+<div>
+<h3>Design Experience</h3>
+<p>
+Our team crafts modern interfaces, cinematic motion and premium user interactions.
+</p>
+</div>
+</div>
+
+<div class="process-step reveal">
+<div class="step-number">3</div>
+<div>
+<h3>Development</h3>
+<p>
+Fast scalable development with clean architecture and responsive performance.
+</p>
+</div>
+</div>
+
+<div class="process-step reveal">
+<div class="step-number">4</div>
+<div>
+<h3>Launch & Growth</h3>
+<p>
+We optimize, launch and continuously scale your startup for long-term growth.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="section-title reveal">
+<h2>Client Feedback</h2>
+<p>
+Startups and creators worldwide trust TAKE for innovative digital experiences.
+</p>
+</div>
+
+<div class="testimonials">
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/men/31.jpg" alt="client">
+<p>
+“TAKE completely transformed our startup identity. The website and motion effects were incredible.”
+</p>
+<h3>Ryan Cooper</h3>
+</div>
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/women/42.jpg" alt="client">
+<p>
+“The responsiveness, speed and cinematic design quality exceeded all our expectations.”
+</p>
+<h3>Emma Watson</h3>
+</div>
+
+<div class="testimonial reveal">
+<img src="https://randomuser.me/api/portraits/men/54.jpg" alt="client">
+<p>
+“Our startup growth improved massively after launching the TAKE digital experience.”
+</p>
+<h3>David Clark</h3>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="cta reveal">
+<h2>Ready To Build The Future?</h2>
+
+<p>
+Launch your startup with cinematic visuals, smooth interactions and next-generation digital experiences.
+</p>
+
+<a href="#" class="btn">Start Your Project</a>
+</div>
+
+</section>
+
+<footer>
+<div class="logo">TA<span>KE</span></div>
+<p>© 2026 TAKE Startup. All rights reserved.</p>
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+reveals.forEach((el)=>{
+
+const windowHeight = window.innerHeight;
+const revealTop = el.getBoundingClientRect().top;
+const revealPoint = 120;
+
+if(revealTop < windowHeight - revealPoint){
+el.classList.add('active');
+}
+
+})
+
+})
+
+window.addEventListener('mousemove',(e)=>{
+
+const x = (e.clientX / window.innerWidth - 0.5) * 10;
+const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+const img = document.querySelector('.hero-image img');
+img.style.transform = `translate(${x}px, ${y}px)`;
+
+})
+
+</script>
+
+</body>
+</html>

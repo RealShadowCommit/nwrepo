@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foodie Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Nunito',sans-serif;
+}
+
+body{
+background:#fff8f0;
+color:#222;
+overflow-x:hidden;
+}
+
+header{
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#ff6b00;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:32px;
+font-weight:800;
+color:white;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+margin-left:30px;
+font-weight:600;
+}
+
+.hero{
+min-height:90vh;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+align-items:center;
+gap:50px;
+padding:80px 7%;
+background:#fff3e6;
+}
+
+.hero-text h1{
+font-size:70px;
+line-height:1.1;
+margin-bottom:25px;
+}
+
+.hero-text span{
+color:#ff6b00;
+}
+
+.hero-text p{
+color:#666;
+line-height:1.9;
+margin-bottom:35px;
+font-size:17px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#ff6b00;
+color:white;
+text-decoration:none;
+border-radius:40px;
+font-weight:700;
+}
+
+.hero img{
+width:100%;
+max-width:550px;
+border-radius:25px;
+}
+
+section{
+padding:80px 7%;
+}
+
+.title{
+text-align:center;
+margin-bottom:55px;
+}
+
+.title h2{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.title p{
+color:#666;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.category{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.category img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.category h3{
+margin-bottom:10px;
+}
+
+.special{
+background:#ff6b00;
+padding:80px 7%;
+border-radius:30px;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+align-items:center;
+gap:40px;
+}
+
+.special img{
+width:100%;
+border-radius:20px;
+}
+
+.special h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.special p{
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.item{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.item img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.item-content{
+padding:25px;
+}
+
+.item-content h3{
+margin-bottom:10px;
+}
+
+.item-content p{
+color:#666;
+line-height:1.7;
+margin-bottom:15px;
+}
+
+.price{
+font-size:28px;
+font-weight:800;
+color:#ff6b00;
+margin-bottom:15px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:20px;
+}
+
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.review{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.review img{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:20px;
+}
+
+.review p{
+line-height:1.8;
+color:#666;
+margin-bottom:15px;
+}
+
+.contact{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+input,textarea{
+padding:15px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+}
+
+button{
+padding:15px;
+background:#ff6b00;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+font-weight:700;
+}
+
+footer{
+background:#222;
+color:#bbb;
+text-align:center;
+padding:30px;
+margin-top:50px;
+}
+
+@media(max-width:850px){
+
+.hero-text h1{
+font-size:48px;
+}
+
+.special h1{
+font-size:40px;
+}
+
+nav{
+display:none;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">FoodieHub</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Menu</a>
+<a href="#">Offers</a>
+<a href="#">Gallery</a>
+<a href="#">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Delicious Food <span>Delivered Fast</span></h1>
+
+<p>
+Enjoy fresh burgers, pizza, drinks and desserts made with premium ingredients and fast delivery.
+</p>
+
+<a href="#" class="btn">Order Now</a>
+
+</div>
+
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop">
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Food Categories</h2>
+<p>Choose your favorite meals.</p>
+</div>
+
+<div class="categories">
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+<h3>Burgers</h3>
+<p>Hot and juicy burgers.</p>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+<h3>Pizza</h3>
+<p>Cheesy and crispy pizzas.</p>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop">
+<h3>Drinks</h3>
+<p>Cold drinks and shakes.</p>
+</div>
+
+<div class="category">
+<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1200&auto=format&fit=crop">
+<h3>Desserts</h3>
+<p>Sweet cakes and desserts.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="special">
+
+<div>
+<h1>Special Combo Offer</h1>
+
+<p>
+Get burger, fries and cold drink combo at a special discount price today.
+</p>
+
+<a href="#" class="btn" style="background:white;color:#ff6b00;">Get Offer</a>
+</div>
+
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Popular Menu</h2>
+<p>Most loved food items.</p>
+</div>
+
+<div class="menu">
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+
+<div class="item-content">
+<h3>Cheese Burger</h3>
+<p>Loaded burger with cheese and crispy fries.</p>
+<div class="price">₹249</div>
+<a href="#" class="btn">Add To Cart</a>
+</div>
+</div>
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+
+<div class="item-content">
+<h3>Italian Pizza</h3>
+<p>Fresh cheesy pizza with premium toppings.</p>
+<div class="price">₹399</div>
+<a href="#" class="btn">Add To Cart</a>
+</div>
+</div>
+
+<div class="item">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop">
+
+<div class="item-content">
+<h3>Cold Shake</h3>
+<p>Chocolate milkshake with ice cream topping.</p>
+<div class="price">₹149</div>
+<a href="#" class="btn">Add To Cart</a>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Food Gallery</h2>
+<p>Fresh and tasty meals.</p>
+</div>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Customer Reviews</h2>
+<p>People love our food.</p>
+</div>
+
+<div class="reviews">
+
+<div class="review">
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop">
+<p>
+“The burgers are super tasty and delivery was very fast.”
+</p>
+<h3>Rahul Sharma</h3>
+</div>
+
+<div class="review">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
+<p>
+“Best pizza in town with amazing cheese quality.”
+</p>
+<h3>Priya Verma</h3>
+</div>
+
+<div class="review">
+<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop">
+<p>
+“Loved the desserts and shakes. Highly recommended.”
+</p>
+<h3>Aman Singh</h3>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="title">
+<h2>Contact Us</h2>
+<p>Place your order today.</p>
+</div>
+
+<div class="contact">
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Your Email">
+
+<textarea rows="5" placeholder="Your Message"></textarea>
+
+<button>Send Message</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 FoodieHub Restaurant
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELORIA Wedding House</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+html,body{
+overflow-x:hidden;
+background:#080808;
+color:white;
+font-family:'Outfit',sans-serif;
+}
+
+body{
+background:
+linear-gradient(to bottom,#050505,#0c0c0c,#050505);
+}
+
+/* CINEMATIC LIGHTS */
+
+.light{
+position:fixed;
+width:600px;
+height:600px;
+border-radius:50%;
+filter:blur(180px);
+z-index:-3;
+opacity:.12;
+}
+
+.light1{
+background:#ffb8d2;
+top:-200px;
+left:-200px;
+}
+
+.light2{
+background:#ffd89b;
+right:-200px;
+bottom:-200px;
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:26px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:999;
+background:rgba(0,0,0,.2);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+font-size:2.4rem;
+font-family:'Playfair Display',serif;
+font-weight:700;
+letter-spacing:3px;
+}
+
+.logo span{
+color:#ffcadf;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:.95rem;
+transition:.4s;
+}
+
+nav ul li a:hover{
+color:#ffcadf;
+}
+
+/* HERO */
+
+.hero{
+min-height:120vh;
+position:relative;
+display:flex;
+align-items:center;
+padding:0 8%;
+overflow:hidden;
+}
+
+.hero-bg{
+position:absolute;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.7)),
+url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+transform:scale(1.1);
+z-index:-2;
+}
+
+.hero-content{
+max-width:950px;
+position:relative;
+z-index:2;
+}
+
+.tag{
+display:inline-block;
+padding:12px 24px;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(10px);
+letter-spacing:2px;
+font-size:.8rem;
+margin-bottom:35px;
+}
+
+.hero h1{
+font-size:7rem;
+line-height:.95;
+font-family:'Playfair Display',serif;
+margin-bottom:30px;
+font-weight:700;
+}
+
+.hero h1 span{
+color:#ffcadf;
+font-style:italic;
+}
+
+.hero p{
+max-width:700px;
+line-height:2;
+font-size:1.05rem;
+color:#d5d5d5;
+margin-bottom:45px;
+}
+
+.buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:18px 38px;
+background:#ffcadf;
+color:black;
+font-weight:600;
+text-decoration:none;
+transition:.5s;
+}
+
+.btn:hover{
+transform:translateY(-6px);
+background:white;
+}
+
+.btn2{
+background:transparent;
+border:1px solid rgba(255,255,255,.15);
+color:white;
+}
+
+.scroll-line{
+position:absolute;
+bottom:50px;
+right:60px;
+height:120px;
+width:1px;
+background:rgba(255,255,255,.2);
+overflow:hidden;
+}
+
+.scroll-line::after{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:40px;
+background:#ffcadf;
+animation:scrollDown 2s infinite;
+}
+
+@keyframes scrollDown{
+0%{transform:translateY(-50px);}
+100%{transform:translateY(140px);}
+}
+
+/* SECTION */
+
+section{
+padding:150px 8%;
+position:relative;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:90px;
+}
+
+.section-title h2{
+font-size:5rem;
+font-family:'Playfair Display',serif;
+margin-bottom:20px;
+}
+
+.section-title p{
+max-width:700px;
+margin:auto;
+line-height:2;
+color:#c8c8c8;
+}
+
+/* STORY SECTION */
+
+.story{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+
+.story-images{
+position:relative;
+height:750px;
+}
+
+.story-images img{
+position:absolute;
+object-fit:cover;
+box-shadow:0 30px 60px rgba(0,0,0,.4);
+transition:1s;
+}
+
+.story-images img:hover{
+transform:scale(1.04);
+}
+
+.img1{
+width:70%;
+height:500px;
+left:0;
+top:0;
+}
+
+.img2{
+width:55%;
+height:380px;
+right:0;
+bottom:0;
+border:10px solid #080808;
+}
+
+.story-text h3{
+font-size:4.5rem;
+font-family:'Playfair Display',serif;
+margin-bottom:25px;
+line-height:1;
+}
+
+.story-text p{
+line-height:2;
+color:#cfcfcf;
+margin-bottom:25px;
+}
+
+/* TIMELINE */
+
+.timeline{
+position:relative;
+max-width:1000px;
+margin:auto;
+}
+
+.timeline::before{
+content:'';
+position:absolute;
+left:50%;
+top:0;
+transform:translateX(-50%);
+width:1px;
+height:100%;
+background:rgba(255,255,255,.1);
+}
+
+.timeline-box{
+width:45%;
+padding:40px;
+background:#111111;
+margin-bottom:60px;
+position:relative;
+transition:.5s;
+}
+
+.timeline-box:hover{
+transform:translateY(-10px);
+background:#161616;
+}
+
+.timeline-box h3{
+font-size:2rem;
+margin-bottom:15px;
+font-family:'Playfair Display',serif;
+}
+
+.timeline-box p{
+line-height:1.9;
+color:#c8c8c8;
+}
+
+.left{
+margin-right:auto;
+}
+
+.right{
+margin-left:auto;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.gallery .card{
+height:550px;
+overflow:hidden;
+position:relative;
+}
+
+.gallery .card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1.2s;
+filter:brightness(.8);
+}
+
+.gallery .card:hover img{
+transform:scale(1.12);
+filter:brightness(1);
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
+display:flex;
+align-items:flex-end;
+padding:35px;
+opacity:0;
+transition:.5s;
+}
+
+.card:hover .overlay{
+opacity:1;
+}
+
+.overlay h3{
+font-size:2rem;
+font-family:'Playfair Display',serif;
+}
+
+/* PARALLAX */
+
+.parallax{
+height:100vh;
+position:relative;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.parallax-bg{
+position:absolute;
+inset:-100px;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1800&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+transform:scale(1.2);
+}
+
+.parallax-content{
+position:relative;
+max-width:900px;
+padding:20px;
+}
+
+.parallax-content h2{
+font-size:6rem;
+font-family:'Playfair Display',serif;
+margin-bottom:20px;
+}
+
+.parallax-content p{
+line-height:2;
+font-size:1.1rem;
+margin-bottom:40px;
+color:#d8d8d8;
+}
+
+/* FOOTER */
+
+footer{
+padding:50px 8%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+footer p{
+color:#999;
+}
+
+/* REVEAL */
+
+.reveal{
+opacity:0;
+transform:translateY(120px);
+transition:1.2s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.hero h1,
+.parallax-content h2{
+font-size:4.5rem;
+}
+
+.story{
+grid-template-columns:1fr;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+.timeline::before{
+display:none;
+}
+
+.timeline-box{
+width:100%;
+}
+
+.story-images{
+height:600px;
+}
+
+}
+
+@media(max-width:700px){
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.hero h1,
+.section-title h2,
+.story-text h3,
+.parallax-content h2{
+font-size:3rem;
+}
+
+.story-images{
+height:450px;
+}
+
+.img1{
+height:320px;
+}
+
+.img2{
+height:250px;
+}
+
+section{
+padding:120px 6%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="light light1"></div>
+<div class="light light2"></div>
+
+<nav>
+
+<div class="logo">
+VEL<span>ORIA</span>
+</div>
+
+<ul>
+<li><a href="#story">Story</a></li>
+<li><a href="#timeline">Journey</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-bg"></div>
+
+<div class="hero-content reveal">
+
+<div class="tag">
+LUXURY WEDDING EXPERIENCE
+</div>
+
+<h1>
+Where Love Feels <span>Cinematic</span>
+</h1>
+
+<p>
+Veloria Wedding House creates timeless wedding celebrations with cinematic elegance, emotional storytelling and unforgettable luxury experiences.
+</p>
+
+<div class="buttons">
+<a href="#gallery" class="btn">Explore Wedding</a>
+<a href="#contact" class="btn btn2">Book Event</a>
+</div>
+
+</div>
+
+<div class="scroll-line"></div>
+
+</section>
+
+<!-- STORY -->
+
+<section id="story">
+
+<div class="section-title reveal">
+<h2>Love Stories</h2>
+<p>
+Every wedding deserves emotion, beauty and moments that feel like scenes from a timeless film.
+</p>
+</div>
+
+<div class="story">
+
+<div class="story-images reveal">
+
+<img class="img1" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop">
+
+<img class="img2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+<div class="story-text reveal">
+
+<h3>
+Crafted With Emotion
+</h3>
+
+<p>
+From royal wedding decor to intimate ceremonies, every experience is designed with cinematic beauty and emotional elegance.
+</p>
+
+<p>
+We blend luxury lighting, floral artistry and timeless aesthetics to create unforgettable wedding memories.
+</p>
+
+<a href="#gallery" class="btn">
+View Moments
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+
+<div class="section-title reveal">
+<h2>Wedding Journey</h2>
+<p>
+A carefully designed experience from engagement to the final celebration.
+</p>
+</div>
+
+<div class="timeline">
+
+<div class="timeline-box left reveal">
+<h3>Engagement Planning</h3>
+<p>
+Elegant concepts, romantic themes and cinematic venue styling for memorable beginnings.
+</p>
+</div>
+
+<div class="timeline-box right reveal">
+<h3>Luxury Decor</h3>
+<p>
+Premium floral design, royal stage setup and artistic lighting experiences.
+</p>
+</div>
+
+<div class="timeline-box left reveal">
+<h3>Wedding Ceremony</h3>
+<p>
+Emotion-filled wedding moments captured with timeless cinematic beauty.
+</p>
+</div>
+
+<div class="timeline-box right reveal">
+<h3>Grand Celebration</h3>
+<p>
+A magical luxury reception experience crafted for unforgettable memories.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<div class="section-title reveal">
+<h2>Cinematic Moments</h2>
+<p>
+Luxury wedding photography and emotional storytelling crafted beautifully.
+</p>
+</div>
+
+<div class="gallery">
+
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Royal Wedding</h3>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Luxury Decor</h3>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop">
+<div class="overlay">
+<h3>Emotional Moments</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- PARALLAX -->
+
+<section class="parallax" id="contact">
+
+<div class="parallax-bg"></div>
+
+<div class="parallax-content reveal">
+
+<h2>
+Begin Your Forever
+</h2>
+
+<p>
+Create a luxury cinematic wedding experience filled with elegance, emotion and unforgettable memories.
+</p>
+
+<a href="#" class="btn">
+Book Wedding Event
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="logo">
+VEL<span>ORIA</span>
+</div>
+
+<p>
+© 2026 Veloria Wedding House. All rights reserved.
+</p>
+
+</footer>
+
+<script>
+
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+reveals.forEach((el)=>{
+
+const windowHeight = window.innerHeight;
+const revealTop = el.getBoundingClientRect().top;
+
+if(revealTop < windowHeight - 120){
+el.classList.add('active');
+}
+
+})
+
+const parallax = document.querySelector('.parallax-bg');
+
+let value = window.scrollY;
+
+parallax.style.transform =
+`translateY(${value * 0.2}px) scale(1.2)`;
+
+const heroBg = document.querySelector('.hero-bg');
+
+heroBg.style.transform =
+`scale(1.1) translateY(${value * 0.12}px)`;
+
+})
+
+</script>
+
+</body>
+</html>

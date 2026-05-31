@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WW2 Cinematic</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:black;
+overflow:hidden;
+}
+
+.hero{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+background:black;
+}
+
+/* BACKGROUND IMAGE */
+
+.bg{
+position:absolute;
+width:120%;
+height:120%;
+top:-10%;
+left:-10%;
+object-fit:cover;
+filter:brightness(0.35) contrast(1.2);
+transform:scale(1.3);
+}
+
+/* DARK OVERLAY */
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:linear-gradient(
+to top,
+rgba(0,0,0,0.95),
+rgba(0,0,0,0.4)
+);
+z-index:2;
+}
+
+/* MOVING SMOKE */
+
+.smoke{
+position:absolute;
+width:250%;
+height:100%;
+background:url("https://i.imgur.com/GV3QXwL.png");
+background-size:cover;
+opacity:0.08;
+mix-blend-mode:screen;
+z-index:3;
+}
+
+/* GRAIN */
+
+.grain{
+position:absolute;
+width:100%;
+height:100%;
+background:url("https://i.imgur.com/oI6h6Tj.png");
+opacity:0.08;
+mix-blend-mode:soft-light;
+z-index:4;
+}
+
+/* CONTENT */
+
+.content{
+position:relative;
+z-index:10;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding-left:8%;
+max-width:900px;
+}
+
+/* SMALL TOP TEXT */
+
+.year{
+font-size:18px;
+letter-spacing:10px;
+color:#d2d2d2;
+margin-bottom:25px;
+opacity:0;
+transform:translateY(60px);
+}
+
+/* MAIN HUGE TEXT */
+
+.title{
+font-size:120px;
+font-weight:900;
+line-height:110px;
+text-transform:uppercase;
+color:white;
+margin-bottom:30px;
+opacity:0;
+transform:translateY(120px);
+}
+
+/* LINE */
+
+.line{
+width:0px;
+height:4px;
+background:white;
+margin-bottom:30px;
+}
+
+/* PARAGRAPH */
+
+.desc{
+font-size:24px;
+line-height:42px;
+color:#d8d8d8;
+max-width:700px;
+opacity:0;
+transform:translateY(60px);
+}
+
+/* FLASH */
+
+.flash{
+position:absolute;
+width:100%;
+height:100%;
+background:white;
+z-index:100;
+opacity:0;
+pointer-events:none;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.content{
+padding:35px;
+}
+
+.title{
+font-size:62px;
+line-height:65px;
+}
+
+.desc{
+font-size:18px;
+line-height:32px;
+}
+
+.year{
+font-size:13px;
+letter-spacing:5px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<!-- BACKGROUND -->
+
+<img class="bg"
+src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop">
+
+<!-- EFFECTS -->
+
+<div class="overlay"></div>
+<div class="smoke"></div>
+<div class="grain"></div>
+<div class="flash"></div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<div class="year">
+1942 • SECOND WORLD WAR
+</div>
+
+<div class="title">
+THE WORLD<br>
+WAS<br>
+BURNING
+</div>
+
+<div class="line"></div>
+
+<div class="desc">
+Millions of soldiers marched into chaos
+while entire cities collapsed under endless
+bombings and destruction during the deadliest
+war in human history.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* FLASH EFFECT */
+
+gsap.to(".flash",{
+opacity:1,
+duration:0.15
+});
+
+gsap.to(".flash",{
+opacity:0,
+duration:1,
+delay:0.15
+});
+
+/* BACKGROUND CINEMATIC ZOOM */
+
+gsap.to(".bg",{
+scale:1.05,
+duration:10,
+ease:"sine.inOut"
+});
+
+/* SMOKE MOVEMENT */
+
+gsap.to(".smoke",{
+x:-500,
+duration:20,
+repeat:-1,
+ease:"none"
+});
+
+/* GRAIN FLICKER */
+
+gsap.to(".grain",{
+opacity:0.14,
+duration:0.25,
+repeat:-1,
+yoyo:true
+});
+
+/* TEXT ANIMATION */
+
+gsap.to(".year",{
+opacity:1,
+y:0,
+duration:1.2,
+delay:0.8,
+ease:"power4.out"
+});
+
+gsap.to(".title",{
+opacity:1,
+y:0,
+duration:1.8,
+delay:1,
+ease:"power4.out"
+});
+
+gsap.to(".line",{
+width:"220px",
+duration:1.2,
+delay:1.7,
+ease:"power3.out"
+});
+
+gsap.to(".desc",{
+opacity:1,
+y:0,
+duration:1.5,
+delay:2,
+ease:"power4.out"
+});
+
+/* TITLE FLOAT */
+
+gsap.to(".title",{
+y:-8,
+duration:3,
+repeat:-1,
+yoyo:true,
+ease:"sine.inOut"
+});
+
+</script>
+
+</body>
+</html>
